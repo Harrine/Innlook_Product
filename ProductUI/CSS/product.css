@@ -1,0 +1,28 @@
+.edit-btn,
+.delete-btn {
+    font-size: 18px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: 0.2s;
+    color: #d94f92;
+    
+}
+
+.edit-btn:hover {
+    color: #007bff;
+    background: #e7f1ff;
+}
+
+.delete-btn:hover {
+    color: #d9534f;
+    background: #ffeaea;
+}
+
+.product-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}

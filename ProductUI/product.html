@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flexigrid Test</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/paulopmx/flexigrid/css/flexigrid.css" />
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/paulopmx/flexigrid/js/flexigrid.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../ProductUI/CSS/Message.css">
+    <link rel="stylesheet" href="../ProductUI/CSS/product.css">
+    <link rel="stylesheet" href="../ProductUI//CSS/edit.css">
+</head>
+
+<body>
+
+    <table id="testgrid"></table>
+
+    <table id="productgrid"></table>
+
+    <script src="../ProductUI/JS/Message.js"></script>
+    <script src="../ProductUI/JS/product.js"></script>
+
+
+    <div id="editModal" class="modal-overlay">
+        <div class="modal-box">
+            <h2>Edit Product</h2>
+            <input type="hidden" id="editid" >
+
+            <label>Product Type</label>
+            <input type="text" id="editProductType" class="input-box">
+
+            <label>Image Name</label>
+            <input type="text" id="editImageName" class="input-box">
+
+            <label>Upto Days</label>
+            <input type="number" id="editUptoDays" class="input-box">
+
+            <label>Image</label>
+
+            <!-- Upload file -->
+            <input type="file" id="editImageFile" accept="image/*" onchange="uploadEditedImage()" class="input-box">
+
+            <!-- Preview -->
+            <img id="editImagePreview" src="" width="120" height="120"
+                style="border-radius: 8px; border:1px solid #ccc; display:none; margin-bottom:10px;">
+
+            <!-- URL will be stored here -->
+            <input type="hidden" id="editImageUrl">
+            <br>
+
+            <button id="save"  class="btn-save">Save</button>
+            <button onclick="closeEditModal()" class="btn-close">Cancel</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
