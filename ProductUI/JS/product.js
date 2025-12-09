@@ -33,11 +33,11 @@ $(function () {
             { display: 'Image Name', name: 'ImageName', width: 200, sortable: true, align: 'center' },
             { display: 'Upto Days', name: 'UptoDays', width: 80, sortable: true, align: 'center' },
             {
-                display: 'Image', name: 'ProductImageUrl', width: 200, align: 'center',
+                display: 'Image', name: 'ProductImageUrl', width: 400, align: 'center',
                 process: function (cellDiv) {
                     // console.log("celldiv : ", cellDiv);
                     var url = $(cellDiv).text();
-                    $(cellDiv).html(`<img src="${url}" width="100" height="100" style="border-radius:8px;">`);
+                    $(cellDiv).html(`<img src="${url}" width="200" height="200" style="width:170px;height:170px;object-fit:cover;border-radius:12px;box-shadow:0 0 8px #c4c4c4;">`);
                 }
             },
             {
@@ -105,6 +105,11 @@ $(document).ready(function () {
         console.log("Save is clicked", $("#editid").val());
         saveEditedProduct($("#editid").val());
 
+    });
+
+    $("#productgrid").on("click", ".bDiv tr", function () {
+        $(".bDiv tr").removeClass("row-selected");
+        $(this).addClass("row-selected");
     });
 
 });

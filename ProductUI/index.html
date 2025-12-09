@@ -18,6 +18,125 @@
 
 <body>
 
+    <style>
+        /* 🌟 Flexigrid Modern UI Styling */
+        .flexigrid {
+            border-radius: 8px !important;
+            overflow: hidden;
+            border: 1px solid #d0d0d0;
+            font-family: "Segoe UI", sans-serif !important;
+        }
+
+        .flexigrid .ftitle {
+            background: linear-gradient(90deg, #5c6bc0, #3949ab);
+            padding: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .flexigrid table {
+            width: 100% !important;
+            border-collapse: collapse;
+        }
+
+        .flexigrid .hDiv,
+        .flexigrid .bDiv {
+            table-layout: fixed !important;
+        }
+
+        .flexigrid .hDiv table,
+        .flexigrid .bDiv table {
+            width: 100% !important;
+        }
+
+        .flexigrid .hDiv th,
+        .flexigrid .bDiv td {
+            padding: 8px !important;
+            margin: 0 !important;
+            border-right: 1px solid #e5e7eb !important;
+            box-sizing: border-box !important;
+        }
+
+        .flexigrid .bDiv tr:nth-child(even) td {
+            background: #f9fbfc !important;
+        }
+
+        .flexigrid .bDiv tr:hover td {
+            background: #eef3ff !important;
+        }
+
+        /* Remove unwanted spacing inside rows */
+        .flexigrid .bDiv td div {
+            padding: 0 !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Prevent image column from expanding the grid */
+        .flexigrid .bDiv td img {
+            display: block;
+            margin: auto;
+        }
+
+        /* Icons */
+        .edit-btn,
+        .delete-btn {
+            font-size: 22px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .edit-btn {
+            color: #1976d2;
+            padding-top: 40%;
+        }
+
+        .delete-btn {
+            color: #e53935;
+            padding-top: 40%;
+        }
+
+        .edit-btn:hover {
+            color: #004ba0;
+            transform: scale(1.2);
+        }
+
+        .delete-btn:hover {
+            color: #b71c1c;
+            transform: scale(1.2);
+        }
+
+        /* Add New Button */
+        .add {
+            background: #43a047 !important;
+            border-radius: 6px !important;
+            padding: 6px 14px !important;
+            color: white !important;
+            font-size: 14px !important;
+            border: none !important;
+        }
+
+        .add:hover {
+            background: #2e7d32 !important;
+        }
+
+        /* Pagination */
+        .flexigrid .pDiv {
+            background: #f3f4f6 !important;
+            border-top: 1px solid #d6d6d6 !important;
+            padding: 8px !important;
+        }
+
+        .pcontrol input {
+            border-radius: 5px !important;
+        }
+
+        .row-selected td {
+            background: #dde7ff !important;
+        }
+    </style>
+
     <table id="testgrid"></table>
 
     <table id="productgrid"></table>
@@ -29,7 +148,7 @@
     <div id="editModal" class="modal-overlay">
         <div class="modal-box">
             <h2>Edit Product</h2>
-            <input type="hidden" id="editid" >
+            <input type="hidden" id="editid">
 
             <label>Product Type</label>
             <input type="text" id="editProductType" class="input-box">
@@ -53,7 +172,7 @@
             <input type="hidden" id="editImageUrl">
             <br>
 
-            <button id="save"  class="btn-save">Save</button>
+            <button id="save" class="btn-save">Save</button>
             <button onclick="closeEditModal()" class="btn-close">Cancel</button>
         </div>
     </div>
