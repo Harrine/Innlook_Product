@@ -37,7 +37,11 @@ $(function () {
                 process: function (cellDiv) {
                     // console.log("celldiv : ", cellDiv);
                     var url = $(cellDiv).text();
-                    $(cellDiv).html(`<img src="${url}" width="200" height="200" style="width:170px;height:170px;object-fit:cover;border-radius:12px;box-shadow:0 0 8px #c4c4c4;">`);
+                    $(cellDiv).html(`
+                        <img src="${url}" 
+                            class="grid-image"
+                            style="width:170px;height:170px;object-fit:cover;border-radius:12px;box-shadow:0 0 8px #c4c4c4;cursor:pointer;">
+                    `);
                 }
             },
             {
@@ -112,6 +116,24 @@ $(document).ready(function () {
         $(this).addClass("row-selected");
     });
 
+    // 📌 Open popup on image click
+    $(document).on("click", ".grid-image", function () {
+        let src = $(this).attr("src");
+        $("#popupImage").attr("src", src);
+        $("#imgPopup").fadeIn(200).css("display", "flex");
+    });
+
+    // 📌 Close popup when clicking X
+    $(".img-popup-close").on("click", function () {
+        $("#imgPopup").fadeOut(200);
+    });
+
+    // 📌 Close popup when clicking outside the image
+    $("#imgPopup").on("click", function (e) {
+        if (e.target.id === "imgPopup") {
+            $("#imgPopup").fadeOut(200);
+        }
+    });
 });
 
 
