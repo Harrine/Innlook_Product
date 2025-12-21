@@ -1,0 +1,56 @@
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #323232;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 15px;
+    opacity: 0;
+    z-index: 9999;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.toast.success {
+    background-color: #4CAF50; /* green */
+}
+.toast.error {
+    background-color: #f44336; /* red */
+}
+
+
+
+/* Loader overlay */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Spinner */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ddd;
+    border-top: 5px solid #333;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

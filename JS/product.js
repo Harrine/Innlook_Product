@@ -25,7 +25,7 @@ $(function () {
                 display: 'Edit', name: 'edit', width: 180, sortable: true, align: 'center',
                 process: function (cellDiv, rowId) {
                     $(cellDiv).html(`
-                        <i class="fa fa-pen-to-square edit-btn" onclick="editProduct('${rowId}')"></i>
+                        <i class="fa fa-pen-to-square edit-btn" onclick="RediredtTo_add_edit_product('${rowId}')"></i>
                     `);
                 }
             },
@@ -66,7 +66,7 @@ $(function () {
                 name: 'Add New',
                 bclass: 'add',
                 onpress: function () {
-                    editProduct("0");
+                    RediredtTo_add_product();
                 }
             }
         ],
@@ -136,6 +136,15 @@ $(document).ready(function () {
     });
 });
 
+function RediredtTo_add_product(){
+    console.log("Redirect to add product page");
+    window.location.href = `/Product/add_product.html?id=0`;
+}
+
+function RediredtTo_add_edit_product(id){
+    console.log("Redirect to add/edit product page");
+    window.location.href = `/Product/add_product.html?id=${id}`;
+}
 
 function editProduct(id) {
     console.log("Edit is called .", id);

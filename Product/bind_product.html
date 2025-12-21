@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Image Viewer - bind_product.html</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/CSS/bind_product.css">
+    </link>
+    <link rel="stylesheet" href="/CSS/Message.css">
+    </link>
+</head>
+
+<body>
+    <script src="/JS/Message.js"></script>
+    <script src="/JS/bind_product.js"></script>
+    <h1>Add Sub Product Image</h1>
+    <div class="main-container">
+        <!-- Left Card: Dropdown + Image Preview -->
+        <div class="card left">
+            <div class="container">
+                <label for="skuSelect">Select SKU Number:</label>
+                <select id="skuSelect">
+                    <option value="">-- Select SKU --</option>
+                </select>
+            </div>
+
+            <div id="imageContainer">
+                <img id="product-image" src="" alt="Product Image">
+                <p class="placeholder">Please select a SKU to view the product image</p>
+            </div>
+        </div>
+
+        <!-- Right Card: Empty bordered box for now -->
+        <div class="card right">
+            <div class="placeholder-box">
+                Right Section (Coming Soon)
+            </div>
+        </div>
+    </div>
+    <div id="globalLoader" class="loader-overlay" style="display:none;">
+        <div class="loader"></div>
+    </div>
+</body>
+
+</html>

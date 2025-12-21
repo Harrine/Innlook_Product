@@ -26,17 +26,26 @@
                 <p>Add a new product to the catalog</p>
             </div>
 
+            <div class="action-card bind" onclick="goToBindProduct()">
+                <h3>Bind Product</h3>
+                <p>Bind a Sub product image to the catalog image</p>
+            </div>
         </div>
     </div>
 
     <script>
         function goToViewProduct() {
-            window.location.href = "/Product/all_product.html";
+            window.location.href = `/Product/all_product.html`;
         }
 
         function goToAddProduct() {
-            
-            window.location.href = "/Product/add_product.html";
+
+            window.location.href = `/Product/add_product.html?id=0`;
+        }
+
+        function goToBindProduct() {
+
+            window.location.href = `/Product/add_product.html?id=0`;
         }
     </script>
 

@@ -68,3 +68,9 @@ body {
     border-color: #28a745;
     background: #ecfff3;
 }
+
+
+.action-card.bind:hover {
+    border-color: #c0b488;
+    background: #f5bd2e84;
+}

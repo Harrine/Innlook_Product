@@ -5,26 +5,44 @@
     <meta charset="UTF-8">
     <title>Product Form</title>
 
-    <link rel="stylesheet" href="../CSS/add_product.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/paulopmx/flexigrid/css/flexigrid.css" />
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/paulopmx/flexigrid/js/flexigrid.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/CSS/add_product.css">
+    <link rel="stylesheet" href="/CSS/Message.css">
 </head>
 
 <body>
-
+    <script src="/JS/add_product.js"></script>
+    <script src="/JS/Message.js"></script>
     <div class="form-container">
-        <h2>Add New Product</h2>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div>
+                <h2 id="title">Add Product</h2>
+            </div>
+            <div>
+                <img id="productImagePreview" src=""
+                    style="display:none; margin-top:10px; max-width:150px; border-radius:8px;" />
+            </div>
+        </div>
 
         <form class="form-grid">
+            <input type="hidden" id="editid">
 
             <!-- Category -->
             <div class="form-group">
                 <label for="category">Product Category</label>
                 <select id="category" name="category">
-                    <option>Select Category</option>
-                    <option>Tops</option>
-                    <option>Dresses</option>
-                    <option>Co-ords</option>
-                    <option>Bottoms</option>
-                    <option>Accessories</option>
+                    <option value="0">Select Category</option>
+                    <option value="1">Tops</option>
+                    <option value="2">Dresses</option>
+                    <option value="3">Co-ords</option>
+                    <option value="4">Bottoms</option>
+                    <option value="5">Accessories</option>
                 </select>
             </div>
 
@@ -45,8 +63,8 @@
                 </label>
 
                 <!-- Image Preview -->
-                <img id="productImagePreview" src=""
-                    style="display:none; margin-top:10px; max-width:150px; border-radius:8px;" />
+                <!-- <img id="productImagePreview" src=""
+                    style="display:none; margin-top:10px; max-width:150px; border-radius:8px;" /> -->
 
                 <!-- Hidden field to store Cloudinary URL -->
                 <input type="hidden" id="productImageUrl" name="productImageUrl">
@@ -65,7 +83,7 @@
                 <input type="number" id="price" name="price">
             </div>
 
-            
+
             <!-- Sizes -->
             <div class="form-group">
                 <label>Available Sizes</label>
@@ -89,10 +107,10 @@
                 <label>In Stock</label>
                 <div class="radio-group">
                     <label for="stock_yes">
-                        <input type="radio" id="stock_yes" name="in_stock" value="true"> Yes
+                        <input type="radio" id="stock_yes" name="in_stock" value="1"> Yes
                     </label>
                     <label for="stock_no">
-                        <input type="radio" id="stock_no" name="in_stock" value="false"> No
+                        <input type="radio" id="stock_no" name="in_stock" value="0"> No
                     </label>
                 </div>
             </div>
@@ -105,13 +123,20 @@
 
             <!-- Button -->
             <div class="form-group full-width">
-                <button type="submit" id="submit_product">Save Product</button>
+                <!-- <button type="submit" id="submit_product">Save Product</button> -->
+                <button type="submit" id="submit_product">
+                    <span class="btn-text">Save Product</span>
+                </button>
+
             </div>
 
         </form>
 
     </div>
 
+    <div id="globalLoader" class="loader-overlay" style="display:none;">
+        <div class="loader"></div>
+    </div>
 </body>
 
 </html>
