@@ -17,7 +17,8 @@ body {
     background: #ffffff;
     padding: 40px;
     border-radius: 12px;
-    width: 500px;
+    width: 1000px;
+    height: 500px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
@@ -45,6 +46,7 @@ body {
     background: #f1f3f6;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    height: 300px;
 }
 
 .action-card h3 {
