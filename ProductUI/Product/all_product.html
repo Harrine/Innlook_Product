@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flexigrid Test</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/paulopmx/flexigrid/css/flexigrid.css" />
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/paulopmx/flexigrid/js/flexigrid.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../CSS/Message.css">
+    <link rel="stylesheet" href="../CSS/product.css">
+    <link rel="stylesheet" href="../CSS/edit.css">
+</head>
+
+<body>
+
+    <style>
+        /* 🌟 Flexigrid Modern UI Styling */
+        .flexigrid {
+            border-radius: 8px !important;
+            overflow: hidden;
+            border: 1px solid #d0d0d0;
+            font-family: "Segoe UI", sans-serif !important;
+        }
+
+        .flexigrid .ftitle {
+            background: linear-gradient(90deg, #5c6bc0, #3949ab);
+            padding: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .flexigrid table {
+            width: 100% !important;
+            border-collapse: collapse;
+        }
+
+        .flexigrid .hDiv,
+        .flexigrid .bDiv {
+            table-layout: fixed !important;
+        }
+
+        .flexigrid .hDiv table,
+        .flexigrid .bDiv table {
+            width: 100% !important;
+        }
+
+        .flexigrid .hDiv th,
+        .flexigrid .bDiv td {
+            padding: 8px !important;
+            margin: 0 !important;
+            border-right: 1px solid #e5e7eb !important;
+            box-sizing: border-box !important;
+        }
+
+        .flexigrid .bDiv tr:nth-child(even) td {
+            background: #f9fbfc !important;
+        }
+
+        .flexigrid .bDiv tr:hover td {
+            background: #eef3ff !important;
+        }
+
+        /* Remove unwanted spacing inside rows */
+        .flexigrid .bDiv td div {
+            padding: 0 !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Prevent image column from expanding the grid */
+        .flexigrid .bDiv td img {
+            display: block;
+            margin: auto;
+        }
+
+        /* Icons */
+        .edit-btn,
+        .delete-btn {
+            font-size: 22px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .edit-btn {
+            color: #1976d2;
+            padding-top: 40%;
+        }
+
+        .delete-btn {
+            color: #e53935;
+            padding-top: 40%;
+        }
+
+        .edit-btn:hover {
+            color: #004ba0;
+            transform: scale(1.2);
+        }
+
+        .delete-btn:hover {
+            color: #b71c1c;
+            transform: scale(1.2);
+        }
+
+        /* Add New Button */
+        .add {
+            background: #43a047 !important;
+            border-radius: 6px !important;
+            padding: 6px 14px !important;
+            color: white !important;
+            font-size: 14px !important;
+            border: none !important;
+        }
+
+        .add:hover {
+            background: #2e7d32 !important;
+        }
+
+        /* Pagination */
+        .flexigrid .pDiv {
+            background: #f3f4f6 !important;
+            border-top: 1px solid #d6d6d6 !important;
+            padding: 8px !important;
+        }
+
+        .pcontrol input {
+            border-radius: 5px !important;
+        }
+
+        .row-selected td {
+            background: #dde7ff !important;
+        }
+    </style>
+
+    <table id="testgrid"></table>
+
+    <table id="productgrid"></table>
+
+    <script src="../JS/Message.js"></script>
+    <script src="../JS/product.js"></script>
+
+
+    <div id="editModal" class="modal-overlay">
+        <div class="modal-box">
+            <h2>Edit Product</h2>
+            <input type="hidden" id="editid">
+
+            <label>Product Type</label>
+            <input type="text" id="editProductType" class="input-box">
+
+            <label>Image Name</label>
+            <input type="text" id="editImageName" class="input-box">
+
+            <label>Upto Days</label>
+            <input type="number" id="editUptoDays" class="input-box">
+
+            <label>Image</label>
+
+            <!-- Upload file -->
+            <input type="file" id="editImageFile" accept="image/*" onchange="uploadEditedImage()" class="input-box">
+
+            <!-- Preview -->
+            <img id="editImagePreview" src="" width="120" height="120"
+                style="border-radius: 8px; border:1px solid #ccc; display:none; margin-bottom:10px;">
+
+            <!-- URL will be stored here -->
+            <input type="hidden" id="editImageUrl">
+            <br>
+
+            <button id="save" class="btn-save">Save</button>
+            <button onclick="closeEditModal()" class="btn-close">Cancel</button>
+        </div>
+    </div>
+
+
+    <!-- 📌 Image Popup Modal -->
+    <div id="imgPopup" class="img-popup-overlay">
+        <span class="img-popup-close">&times;</span>
+        <img id="popupImage" class="img-popup-content">
+    </div>
+
+    <style>
+        .img-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .img-popup-content {
+            max-width: 60%;
+            max-height: 60%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #000;
+        }
+
+        .img-popup-close {
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .img-popup-close:hover {
+            color: #ff4444;
+        }
+    </style>
+
+</body>
+
+</html>

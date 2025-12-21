@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product Form</title>
+
+    <link rel="stylesheet" href="../CSS/add_product.css">
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Add New Product</h2>
+
+        <form class="form-grid">
+
+            <!-- Category -->
+            <div class="form-group">
+                <label for="category">Product Category</label>
+                <select id="category" name="category">
+                    <option>Select Category</option>
+                    <option>Tops</option>
+                    <option>Dresses</option>
+                    <option>Co-ords</option>
+                    <option>Bottoms</option>
+                    <option>Accessories</option>
+                </select>
+            </div>
+
+            <!-- Product Name -->
+            <div class="form-group">
+                <label for="product_name">Product Name</label>
+                <input type="text" id="product_name" name="product_name" placeholder="Enter product name">
+            </div>
+
+            <!-- Product Image Upload -->
+            <div class="form-group full-width">
+                <label for="productImageFile">Product Image</label>
+
+                <label class="image-upload">
+                    <input type="file" id="productImageFile" name="product_image" accept="image/*"
+                        onchange="uploadProductImage()">
+                    📷 Click to upload image
+                </label>
+
+                <!-- Image Preview -->
+                <img id="productImagePreview" src=""
+                    style="display:none; margin-top:10px; max-width:150px; border-radius:8px;" />
+
+                <!-- Hidden field to store Cloudinary URL -->
+                <input type="hidden" id="productImageUrl" name="productImageUrl">
+            </div>
+
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+
+            <!-- Rate -->
+            <div class="form-group">
+                <label for="price">Rate (₹)</label>
+                <input type="number" id="price" name="price">
+            </div>
+
+            
+            <!-- Sizes -->
+            <div class="form-group">
+                <label>Available Sizes</label>
+                <div class="checkbox-group">
+                    <label for="size_s"><input type="checkbox" id="size_s" name="sizes[]" value="S"> S</label>
+                    <label for="size_m"><input type="checkbox" id="size_m" name="sizes[]" value="M"> M</label>
+                    <label for="size_l"><input type="checkbox" id="size_l" name="sizes[]" value="L"> L</label>
+                    <label for="size_xl"><input type="checkbox" id="size_xl" name="sizes[]" value="XL"> XL</label>
+                </div>
+            </div>
+
+            <!-- Discount -->
+            <div class="form-group">
+                <label for="discount">Discount (%)</label>
+                <input type="number" id="discount" name="discount">
+            </div>
+
+
+            <!-- Stock -->
+            <div class="form-group">
+                <label>In Stock</label>
+                <div class="radio-group">
+                    <label for="stock_yes">
+                        <input type="radio" id="stock_yes" name="in_stock" value="true"> Yes
+                    </label>
+                    <label for="stock_no">
+                        <input type="radio" id="stock_no" name="in_stock" value="false"> No
+                    </label>
+                </div>
+            </div>
+
+            <!-- Other Info -->
+            <div class="form-group full-width">
+                <label for="other_info">Other Information</label>
+                <textarea id="other_info" name="other_info"></textarea>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group full-width">
+                <button type="submit" id="submit_product">Save Product</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
