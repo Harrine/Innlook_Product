@@ -17,6 +17,31 @@ $(document).ready(function () {
 
     const params = new URLSearchParams(window.location.search);
 
+    const subCategories = {
+        1: ["T-Shirts", "Shirts", "Tops", "Sweatshirts"],
+        2: ["Party Dresses", "Casual Dresses", "Maxi Dresses"],
+        3: ["Printed Co-ords", "Solid Co-ords", "Denim Co-ords"],
+        4: ["Jeans", "Trousers", "Skirts", "Shorts", "Cotton Pants"],
+        5: ["Bags", "Belts", "Jewellery"]
+    };
+
+    $("#category").change(function () {
+        const categoryId = $(this).val();
+        const $subCategory = $("#sub_category");
+
+        // Clear old options
+        $subCategory.empty();
+        $subCategory.append('<option value="0">Select Sub Category</option>');
+
+        if (categoryId != "0") {
+            $.each(subCategories[categoryId], function (index, value) {
+                $subCategory.append(
+                    `<option value="${value}">${value}</option>`
+                );
+            });
+        }
+    });
+
     id = params.get('id');
     id != null ? id : "0";
     console.log("URL Params:", id);
@@ -79,6 +104,7 @@ function EditGetProductById(id) {
 
                 $("#editid").val(res[0].id);
                 $('#category').val(res[0].categoryid);
+                $('#sub_category').val(res[0].subcategory),
                 $("#editProductType").val(res[0].ProductType);
                 $("#product_name").val(res[0].ImageName);
                 $("#uptodays").val(res[0].UptoDays);
@@ -122,6 +148,7 @@ function saveEditedProduct(isedit) {
                 id: $("#editid").val(),
                 mode: "EditProduct",
                 categoryid: $('#category option:selected').val(),
+                subcategory: $('#sub_category option:selected').val(),
                 productype: $("#category option:selected").text(),
                 productname: $("#product_name").val(),
                 uptodays: "10",
@@ -141,6 +168,7 @@ function saveEditedProduct(isedit) {
                 id: $("#editid").val(),
                 mode: "InsertProduct",
                 categoryid: $('#category option:selected').val(),
+                subcategory: $('#sub_category option:selected').val(),
                 productype: $("#category option:selected").text(),
                 productname: $("#product_name").val(),
                 uptodays: "10",
